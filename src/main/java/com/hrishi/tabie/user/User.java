@@ -1,7 +1,10 @@
 package com.hrishi.tabie.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.hrishi.tabie.tabsession.TabSession;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "T_USER")
@@ -23,6 +26,11 @@ public class User {
 
     private LocalDateTime updatedAt;
 
+    @OneToMany(
+            mappedBy = "user"
+    )
+    @JsonManagedReference
+    private List<TabSession> tabSessions;
 
     public User() {
     }
@@ -33,6 +41,14 @@ public class User {
         this.password = password;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public List<TabSession> getTabSessions() {
+        return tabSessions;
+    }
+
+    public void setTabSessions(List<TabSession> tabSessions) {
+        this.tabSessions = tabSessions;
     }
 
     public Integer getId() {

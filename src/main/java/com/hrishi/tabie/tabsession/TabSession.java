@@ -22,6 +22,12 @@ public class TabSession {
 
     private LocalDateTime updatedAt;
 
+    @ManyToOne
+    @JoinColumn(
+            name = "user-id"
+    )
+    @JsonBackReference
+    private User user;
 
     public TabSession() {
     }
@@ -32,6 +38,13 @@ public class TabSession {
         this.updatedAt = updatedAt;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;
