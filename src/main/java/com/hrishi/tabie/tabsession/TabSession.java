@@ -2,6 +2,7 @@ package com.hrishi.tabie.tabsession;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.hrishi.tabie.tab.Tab;
 import com.hrishi.tabie.user.User;
 import jakarta.persistence.*;
 
@@ -29,6 +30,12 @@ public class TabSession {
     @JsonBackReference
     private User user;
 
+    @OneToMany(
+            mappedBy = "tabsession"
+    )
+    @JsonManagedReference
+    private List<Tab> tabs;
+
     public TabSession() {
     }
 
@@ -36,6 +43,14 @@ public class TabSession {
         this.sessionName = sessionName;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public List<Tab> getTabs() {
+        return tabs;
+    }
+
+    public void setTabs(List<Tab> tabs) {
+        this.tabs = tabs;
     }
 
     public User getUser() {
