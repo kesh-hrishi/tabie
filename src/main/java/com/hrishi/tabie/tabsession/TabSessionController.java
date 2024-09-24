@@ -15,7 +15,7 @@ public class TabSessionController {
     }
 
     @PostMapping("/tabsessions")
-    public TabSessionResponseDto createTabSession(@RequestBody TabSessionDto tabSessiondto) {
+    public TabSessionResponseDtoWithoutTabs createTabSession(@RequestBody TabSessionDto tabSessiondto) {
         return this.tabSessionService.saveTabSession(tabSessiondto);
     }
 

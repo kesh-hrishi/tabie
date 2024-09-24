@@ -16,10 +16,10 @@ public class TabSessionService {
         this.tabSessionMapper = tabSessionMapper;
     }
 
-    public TabSessionResponseDto saveTabSession(TabSessionDto tabSessionDto) {
+    public TabSessionResponseDtoWithoutTabs saveTabSession(TabSessionDto tabSessionDto) {
         var tabSession = tabSessionMapper.toTabSession(tabSessionDto);
         var savedTabSession = tabSessionRepository.save(tabSession);
-        return tabSessionMapper.toTabSessionResponseDto(savedTabSession);
+        return tabSessionMapper.toTabSessionResponseDtoWithoutTabs(savedTabSession);
     }
 
     public List<TabSessionResponseDto> displayTabSession() {
