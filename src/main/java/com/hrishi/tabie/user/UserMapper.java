@@ -1,6 +1,5 @@
 package com.hrishi.tabie.user;
 
-import com.hrishi.tabie.tab.TabMapper;
 import com.hrishi.tabie.tabsession.TabSessionMapper;
 import org.springframework.stereotype.Service;
 
