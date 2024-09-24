@@ -31,7 +31,9 @@ public class TabSession {
     private User user;
 
     @OneToMany(
-            mappedBy = "tabsession"
+            mappedBy = "tabsession",
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private List<Tab> tabs;
