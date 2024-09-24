@@ -7,31 +7,30 @@ import java.util.List;
 
 @RestController
 public class UserController {
+    private final UserService userService;
 
-    private final UserRepository userRepository;
-
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public UserResponseDtoWithoutRelations createUser(@RequestBody UserDto userDto) {
+        return this.userService.saveUser(userDto);
     }
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDto> getAllUsers() {
+        return this.userService.displayUser();
     }
 
     @GetMapping("/users/{users-id}")
-    public User getUserById(@PathVariable("users-id") Integer usersId) {
-        return userRepository.findById(usersId).orElse(null);
+    public UserResponseDto getUserById(@PathVariable("users-id") Integer usersId) {
+        return this.userService.displayUserById(usersId);
     }
 
     @DeleteMapping("/users/{users-id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUsersById(@PathVariable("users-id") Integer usersId) {
-        userRepository.deleteById(usersId);
+        userService.deleteUserById(usersId);
     }
 }
