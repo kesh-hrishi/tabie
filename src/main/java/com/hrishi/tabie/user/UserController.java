@@ -28,6 +28,11 @@ public class UserController {
         return this.userService.displayUserById(usersId);
     }
 
+    @GetMapping("/users/{user-name}")
+    public UserResponseDtoWithoutRelations getUserByUsername(@PathVariable("user-name") String username) {
+        return this.userService.displayUserByUsername(username);
+    }
+
     @DeleteMapping("/users/{users-id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUsersById(@PathVariable("users-id") Integer usersId) {
