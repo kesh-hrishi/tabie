@@ -16,18 +16,18 @@ public class UserMapper {
 
     public User toUser(UserDto userDto) {
         var userObj = new User();
-        userObj.setUserName(userDto.userName());
+        userObj.setUsername(userDto.userName());
         userObj.setEmail(userDto.email());
         userObj.setPassword(userDto.password());
         return userObj;
     }
 
     public UserResponseDtoWithoutRelations touserResponseDtoWithoutRelations(User user) {
-        return new UserResponseDtoWithoutRelations(user.getUserName(), user.getEmail());
+        return new UserResponseDtoWithoutRelations(user.getUsername(), user.getEmail());
     }
 
     public UserResponseDto toUserResponseDto(User user) {
-        return new UserResponseDto(user.getUserName(), user.getEmail(),
+        return new UserResponseDto(user.getUsername(), user.getEmail(),
                 user.getTabSessions().stream()
                         .map(tabSessionMapper::toTabSessionResponseDto)
                         .collect(Collectors.toList()));
