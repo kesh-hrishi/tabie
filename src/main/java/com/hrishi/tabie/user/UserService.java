@@ -1,5 +1,6 @@
 package com.hrishi.tabie.user;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,12 @@ public class UserService {
     public UserResponseDtoWithoutRelations saveUser(UserDto userDto) {
         var user = userMapper.toUser(userDto);
         var savedUser = userRepository.save(user);
+        return userMapper.touserResponseDtoWithoutRelations(savedUser);
+    }
+
+    public UserResponseDtoWithoutRelations displayUserByUsername(String username) {
+        var savedUser = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
         return userMapper.touserResponseDtoWithoutRelations(savedUser);
     }
 
